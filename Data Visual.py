@@ -2,14 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import geopandas as gpd
-from matplotlib.colors import LinearSegmentedColormap
-import matplotlib.patches as mpatches
-from matplotlib.lines import Line2D
 import os
 from matplotlib.ticker import PercentFormatter
-import urllib.request
-import zipfile
 
 # Set the aesthetics for the visualizations
 plt.style.use('seaborn-v0_8-whitegrid')
@@ -103,9 +97,9 @@ def plot_smoking_prevalence_trends(df, output_dir):
     plt.savefig(os.path.join(output_dir, '1_smoking_prevalence_trends.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
-# 2. Successful Quit Attempt Trends - Second panel
-def plot_quit_attempt_trends(df, output_dir):
-    """Create a figure showing quit attempt trends by treatment group."""
+# 2. Quit Success Rate - Second panel
+def plot_quit_success_rate(df, output_dir):
+    """Create a figure showing quit success rate by treatment group."""
     # Create figure
     plt.figure(figsize=(10, 6))
     
@@ -127,9 +121,9 @@ def plot_quit_attempt_trends(df, output_dir):
         plt.text(2011.5, avg + 0.5, f'Avg: {avg:.1f}%', color=list(COLORS.values())[i])
     
     # Add labels and title
-    plt.title('Successful Quit Attempt Trends (2011-2020)', fontsize=16)
+    plt.title('Quit Success Rate by Treatment Group (2011-2020)', fontsize=16)
     plt.xlabel('Year')
-    plt.ylabel('Past Year Successful Quit (%)', fontsize=10)
+    plt.ylabel('Quit Success Rate (%)', fontsize=10)
     plt.grid(alpha=0.3)
     
     # Get current axis and set y-tick font size smaller
@@ -148,7 +142,7 @@ def plot_quit_attempt_trends(df, output_dir):
     plt.tight_layout(rect=[0, 0.03, 1, 0.97])
     
     # Save figure
-    plt.savefig(os.path.join(output_dir, '2_quit_attempt_trends.png'), dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(output_dir, '2_quit_success_rate.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
 # 3. Average Outcomes Bar Chart - Third panel
@@ -181,7 +175,7 @@ def plot_average_outcomes(df, output_dir):
     # Map variable names to better labels
     avg_melted['Outcome'] = avg_melted['Outcome'].map({
         'current_smoker_prev': 'Smoking Prevalence', 
-        'past_year_quit_attempt_prev': 'Success Quit Rate'
+        'past_year_quit_attempt_prev': 'Quit Success Rate'
     })
     
     # Create grouped bar chart
@@ -225,4 +219,43 @@ def plot_average_outcomes(df, output_dir):
     plt.savefig(os.path.join(output_dir, '3_average_outcomes.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
-
+# Main function
+def main():
+    """Main function to execute all visualizations."""
+    # Set output directory
+    output_dir = "C:/Users/James/Desktop/Github/State-Tobacco-Analysis/Visualizations"
+    
+    # Create output directory if it doesn't exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        print(f"Created output directory: {output_dir}")
+    
+    # Load data
+    df = load_data()
+    
+    if df is None:
+        print("Failed to load data. Exiting.")
+        return
+    
+    print(f"Data loaded successfully with {len(df)} observations.")
+    print(f"Found {df['_state'].nunique()} states across {df['year'].nunique()} years.")
+    print(f"Treatment groups present: {df['treatment_group'].unique()}")
+    
+    # Generate only the first three smoking outcome visualizations
+    print("\nGenerating smoking prevalence trends visualization...")
+    plot_smoking_prevalence_trends(df, output_dir)
+    
+    print("Generating quit success rate visualization...")
+    plot_quit_success_rate(df, output_dir)
+    
+    print("Generating average outcomes visualization...")
+    plot_average_outcomes(df, output_dir)
+    
+    print("\nAll visualizations have been saved to:", output_dir)
+    print("The following files were created:")
+    print("  - 1_smoking_prevalence_trends.png")
+    print("  - 2_quit_success_rate.png")
+    print("  - 3_average_outcomes.png")
+    
+if __name__ == "__main__":
+    main()

@@ -4,7 +4,7 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
-# Set working directory - change this to your directory
+# Set working directory 
 work_dir = "C:/Users/james/Desktop/Second Year Paper/BRFSS Data"
 os.chdir(work_dir)
 
@@ -13,12 +13,12 @@ def clean_brfss_data_from_stata():
     
     dfs = []
     
-    # Step 1: Import Stata files
+    # Import Stata files
     for year in range(2011, 2021):
         print(f"Processing BRFSS data for {year}...")
         
         try:
-            # Try to read the Stata file
+
             df = pd.read_stata(f"data{year}.dta")
             
             # Add year variable if it doesn't exist
@@ -47,10 +47,10 @@ def clean_brfss_data_from_stata():
     combined_data = pd.concat(dfs, ignore_index=True)
     print(f"Combined data shape: {combined_data.shape}")
     
-    # Step 2: Load Medicaid expansion data
+    # Load Medicaid expansion data
     print("Loading Medicaid expansion data...")
     try:
-        # Try to read the Stata file
+        
         medicaid_expansion = pd.read_stata("medicaid_expansion.dta")
     except Exception as e:
         print(f"Error loading Medicaid expansion data: {e}")
@@ -78,11 +78,11 @@ def clean_brfss_data_from_stata():
             ]
         })
     
-    # Step 3: Merge with Medicaid expansion data
+    # Merge with Medicaid expansion data
     print("Merging with Medicaid expansion data...")
     combined_data = combined_data.merge(medicaid_expansion, on='_state', how='left')
     
-    # Step 4: Load FIPS code mapping
+    # Load FIPS code mapping
     print("Loading FIPS code mapping...")
     try:
         # Try to read the Stata file
@@ -92,7 +92,7 @@ def clean_brfss_data_from_stata():
         # Use the medicaid_expansion data as a fallback
         fips_mapping = medicaid_expansion[['_state', 'state_name']].copy()
         
-    # Step 5: Load Medicaid cessation treatment coverage data
+    # Load Medicaid cessation treatment coverage data
     print("Loading Medicaid cessation treatment coverage data...")
     try:
         # Try to read the Stata file
@@ -102,9 +102,8 @@ def clean_brfss_data_from_stata():
         print("Skipping cessation data merge...")
         cessation_data = None
     
-    # Rest of the steps follow the same pattern...
     
-    # Step 8: Create consistent adults variable
+    # Create consistent adults variable
     print("Creating consistent adults variable...")
     combined_data['totaladult'] = np.nan
     
@@ -126,7 +125,7 @@ def clean_brfss_data_from_stata():
         mask_hhadult = mask_2014_2020 & combined_data['numadult'].isna() & combined_data['hhadult'].notna()
         combined_data.loc[mask_hhadult, 'totaladult'] = combined_data.loc[mask_hhadult, 'hhadult']
     
-    # Step 10: Calculate Federal Poverty Level (FPL)
+    # Calculate Federal Poverty Level (FPL)
     print("Calculating Federal Poverty Level thresholds...")
     # Create FPL base amounts by year
     fpl_base_dict = {
@@ -161,7 +160,7 @@ def clean_brfss_data_from_stata():
     # Create Medicaid eligibility indicator
     combined_data['Medicaidelig'] = (combined_data['fpl_percent'] <= 100).astype(int)
     
-    # Step 11: Final filters
+    # Final filters
     print("Applying final sample filters...")
     
     # Keep only Medicaid eligible
@@ -175,7 +174,7 @@ def clean_brfss_data_from_stata():
     if 'sex' in combined_data.columns:
         combined_data = combined_data[combined_data['sex'].isin([1, 2])]
     
-    # Step 12: Save the final dataset
+    # Save the final dataset
     print("Saving final dataset...")
     final_path = os.path.join(work_dir, "Final_2011_2020_Medicaidelig.csv")
     combined_data.to_csv(final_path, index=False)

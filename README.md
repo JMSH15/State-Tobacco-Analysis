@@ -14,19 +14,19 @@ The project includes comprehensive data cleaning, preparation, and visualization
 ## II. Input Data Sources
 The analysis uses several data sources:
 - **BRFSS Data (2011-2020)**: Behavioral Risk Factor Surveillance System survey data containing individual-level smoking behaviors and demographic information. 
-Source: https://www.cdc.gov/brfss/annual_data/annual_data.htm
+    - Source: https://www.cdc.gov/brfss/annual_data/annual_data.htm
 - **Medicaid Expansion Data**: State-level information on Medicaid expansion status. 
-Source: https://www.kff.org/status-of-state-medicaid-expansion-decisions/
+    - Source: https://www.kff.org/status-of-state-medicaid-expansion-decisions/
 
 - **State Tobacco Activities Tracking and Evaluation (STATE) system Data**: Presents data on traditional Medicaid coverage of tobacco cessation treatments across all 50 states and D.C., serving as a national resource for assessing state-level cessation policies. 
-Source: https://www.cdc.gov/statesystem/index.html
     - **Cessation Treatments Coverage Data**: Details on which tobacco cessation treatments are covered by Medicaid in each state
     - **Smokefree Indoor Air Data**: Information on smoking restrictions in bars, private worksites, and restaurants
     - **Cigarette Tax Data**: State-level cigarette tax rates per pack
+    - Source: https://www.cdc.gov/statesystem/index.html
 - **US Census FIPS Code Mapping**: For standardizing state identifiers. 
-Source: https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt
+    - Source: https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt
 - **Federal Poverty Level (FPL) Information**: Annual poverty thresholds used to determine Medicaid eligibility. 
-Source: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
+    - Source: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
 
 The analysis focuses on the Medicaid-eligible population (individuals at or below 100% of the Federal Poverty Level).
 

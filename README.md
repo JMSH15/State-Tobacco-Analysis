@@ -20,8 +20,6 @@ The analysis uses several data sources:
 
 - **State Tobacco Activities Tracking and Evaluation (STATE) system Data**: Presents data on traditional Medicaid coverage of tobacco cessation treatments across all 50 states and D.C., serving as a national resource for assessing state-level cessation policies. 
     - **Cessation Treatments Coverage Data**: Details on which tobacco cessation treatments are covered by Medicaid in each state
-    - **Smokefree Indoor Air Data**: Information on smoking restrictions in bars, private worksites, and restaurants
-    - **Cigarette Tax Data**: State-level cigarette tax rates per pack
     - Source: https://www.cdc.gov/statesystem/index.html
 - **US Census FIPS Code Mapping**: For standardizing state identifiers. 
     - Source: https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt

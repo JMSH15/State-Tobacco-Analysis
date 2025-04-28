@@ -214,7 +214,7 @@ def main():
     # Create four separate map visualizations
     print("\nCreating map visualizations...")
     
-    # 1. Smoking Prevalence 2011
+    # Smoking Prevalence 2011
     create_filled_color_map(
         df=df,
         shapefile_path=shapefile_path,
@@ -226,7 +226,7 @@ def main():
         output_dir=output_dir
     )
     
-    # 2. Smoking Prevalence 2020
+    # Smoking Prevalence 2020
     create_filled_color_map(
         df=df,
         shapefile_path=shapefile_path,
@@ -238,7 +238,7 @@ def main():
         output_dir=output_dir
     )
     
-    # 3. Quit Success Rate 2011
+    # Quit Success Rate 2011
     create_filled_color_map(
         df=df,
         shapefile_path=shapefile_path,
@@ -250,7 +250,7 @@ def main():
         output_dir=output_dir
     )
     
-    # 4. Quit Success Rate 2020
+    # Quit Success Rate 2020
     create_filled_color_map(
         df=df,
         shapefile_path=shapefile_path,

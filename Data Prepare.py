@@ -16,8 +16,7 @@ df = df[df['year'] <= 2020]
 
 
 ###############################################################################
-#                   STEP 1: CLEAN INDIVIDUAL-LEVEL DATA                       #
-###############################################################################
+# CLEAN INDIVIDUAL-LEVEL DATA
 
 # Keep only the necessary variables
 variables_to_keep = [
@@ -84,12 +83,11 @@ df['age_45_54'] = (((df['_ageg5yr'] == 6) | (df['_ageg5yr'] == 7)) &
 df['age_55_64'] = (((df['_ageg5yr'] == 8) | (df['_ageg5yr'] == 9)) & 
                   (df['_ageg5yr'] < 14)).astype(int)
 
-# Smoke-free air law binary indicators are removed as requested
+# Smoke-free air law binary indicators are removed
 
 
 ###############################################################################
-#               STEP 2: CREATE TREATMENT CATEGORY VARIABLES                   #
-###############################################################################
+# CREATE TREATMENT CATEGORY VARIABLES
 
 # Generate binary variables for each treatment
 treatment_vars = [
@@ -125,8 +123,7 @@ df.to_csv(os.path.join(output_dir, "individual_level_with_category_indicators.cs
 
 
 ###############################################################################
-#                  STEP 3: AGGREGATE TO STATE-LEVEL DATA                      #
-###############################################################################
+# AGGREGATE TO STATE-LEVEL DATA
 
 # Create a count variable for each observation
 df['count_all'] = 1
@@ -208,10 +205,8 @@ state_df = current_smoker_df.merge(
 )
 
 
-
 ###############################################################################
-#               STEP 4: CREATE FOCUSED TREATMENT VARIABLES                    #
-###############################################################################
+# CREATE FOCUSED TREATMENT VARIABLES
 
 # Create mutually exclusive treatment categories
 state_df['treatment_group'] = 0  # No coverage (control)
@@ -234,8 +229,7 @@ state_df = state_df[(state_df['treatment_group'] == 2) | (state_df['treatment_gr
 
 
 ###############################################################################
-#                 STEP 5: FINALIZE DATA (DESCRIPTIVE ONLY)                    #
-###############################################################################
+# FINALIZE DATA
 
 # Check data coverage by state
 state_coverage = state_df.groupby('_state').agg(

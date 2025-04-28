@@ -42,43 +42,43 @@ def merge_brfss_data():
     combined_data = pd.concat(dfs, ignore_index=True)
     print(f"Combined data shape: {combined_data.shape}")
     
-    # Step 1: Load FIPS code mapping and merge with combined data
+    # Load FIPS code mapping and merge with combined data
     print("Loading and merging FIPS code mapping...")
     fips_mapping = pd.read_stata("fips_gnis_mapping.dta")
     # In the Stata script, fips_gnis_mapping.dta has _state and state_name
     combined_data = combined_data.merge(fips_mapping, on='_state', how='inner')
     
-    # Step 2: Load and merge Medicaid expansion data
+    # Load and merge Medicaid expansion data
     print("Merging with Medicaid expansion data...")
     medicaid_expansion = pd.read_stata("medicaid_expansion.dta")
     combined_data = combined_data.merge(medicaid_expansion, on='_state', how='left')
     
-    # Step 3: Load Cessation Treatments Coverage data
+    # Load Cessation Treatments Coverage data
     print("Merging with Cessation Treatments Coverage data...")
     # In the Stata script, this file has state_name (not _state) and year as keys
     cessation_data = pd.read_stata("Cessation_Treatments_Coverage.dta")
     combined_data = combined_data.merge(cessation_data, on=['state_name', 'year'], how='left')
     
-    # Step 4: Filter out states with _state > 56
+    # Filter out states with _state > 56
     combined_data = combined_data[combined_data['_state'] <= 56]
     
-    # Step 5: Load and merge Smokefree Indoor Air Bar data
+    # Load and merge Smokefree Indoor Air Bar data
     print("Merging with Smokefree Indoor Air Bar data...")
     sia_bar = pd.read_stata("Smokefree Indoor Air Bar.dta")
     # This file has state_name and year as keys
     combined_data = combined_data.merge(sia_bar, on=['state_name', 'year'], how='inner')
     
-    # Step 6: Load and merge Smokefree Indoor Air Private Worksites data
+    # Load and merge Smokefree Indoor Air Private Worksites data
     print("Merging with Smokefree Indoor Air Private Worksites data...")
     sia_worksites = pd.read_stata("Smokefree Indoor Private Worksites.dta")
     combined_data = combined_data.merge(sia_worksites, on=['state_name', 'year'], how='inner')
     
-    # Step 7: Load and merge Smokefree Indoor Air Restaurants data
+    # Load and merge Smokefree Indoor Air Restaurants data
     print("Merging with Smokefree Indoor Air Restaurants data...")
     sia_restaurants = pd.read_stata("Smokefree Indoor Air Restaurants.dta")
     combined_data = combined_data.merge(sia_restaurants, on=['state_name', 'year'], how='inner')
     
-    # Step 8: Load and merge Cigarette Tax Per Pack data
+    # Load and merge Cigarette Tax Per Pack data
     print("Merging with Cigarette Tax Per Pack data...")
     cig_tax = pd.read_stata("CigTax_PerPack.dta")
     combined_data = combined_data.merge(cig_tax, on=['state_name', 'year'], how='inner')

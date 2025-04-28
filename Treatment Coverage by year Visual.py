@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 import os
 
 def main():
-    # 1. Load the individual‐level category indicators
+    # Load the individual‐level category indicators
     csv_path = r'C:\Users\James\Desktop\Github\State-Tobacco-Analysis\individual_level_with_category_indicators.csv'
     df = pd.read_csv(csv_path)
 
-    # 2. Collapse to state‑year: did the state ever cover each category?
+    # Collapse to state‑year: did the state ever cover each category?
     state_year = (
         df
         .groupby(['_state', 'year'])
@@ -20,7 +20,7 @@ def main():
         .reset_index()
     )
 
-    # 3. Define the six mutually‑exclusive coverage combos
+    # Define the six mutually‑exclusive coverage combos
     conds = [
         (state_year[['any_nrt','any_medication','any_counseling']]==[0,0,0]).all(axis=1),
         (state_year[['any_nrt','any_medication','any_counseling']]==[1,0,0]).all(axis=1),
@@ -39,7 +39,7 @@ def main():
     ]
     state_year['combo'] = np.select(conds, choices, default='Other')
 
-    # 4. Count number of unique states per year×combo
+    # Count number of unique states per year×combo
     counts = (
         state_year
         .groupby(['year','combo'])['_state']
@@ -47,17 +47,17 @@ def main():
         .unstack(fill_value=0)
     )
 
-    # 5. Re‑order columns
+    # Re‑order columns
     order = [
         'No coverage','NRT only','Medication only',
         'NRT + Medication','NRT + Counseling','All categories'
     ]
     counts = counts[order]
 
-    # 6. Convert year index to strings so ticks read "2011", "2012", etc.
+    # Convert year index to strings so ticks read "2011", "2012", etc.
     counts.index = counts.index.astype(int).astype(str)
 
-    # 7. Define colors
+    # Define colors
     colors = {
         'No coverage':      '#006400',
         'NRT only':         '#FF4500',
@@ -67,7 +67,7 @@ def main():
         'All categories':   '#A0522D'
     }
 
-    # 8. Plot and save
+    # Plot and save
     output_dir = r'C:\Users\James\Desktop\Github\State-Tobacco-Analysis\Visualizations'
     os.makedirs(output_dir, exist_ok=True)
 

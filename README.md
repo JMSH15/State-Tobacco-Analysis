@@ -1,15 +1,22 @@
 # State Tobacco Analysis
 
 ## I. Overview
-This project analyzes the effectiveness of different Medicaid tobacco cessation coverage policies across US states from 2011 to 2020. The analysis focuses on two combination of treatment approaches:
-1. NRT (Nicotine Replacement Therapy) + Medication
-2. NRT + Medication + Counseling
+This project analyzes the effectiveness of different Medicaid tobacco cessation coverage policies across US states from 2011 to 2020. The analysis categorizes comprehensive coverage into three main treatment categories:
+
+1. **Nicotine Replacement Therapy (NRT)**: Includes nicotine patches, gum, lozenges, nasal spray, and inhalers
+2. **Medication**: Includes prescription medications like bupropion and varenicline
+3. **Counseling**: Includes individual and group counseling services
+
+Rather than examining differences between covering specific NRT products (as these differences were minimal), the analysis focuses on states that had at least one treatment in each category. Through this approach, two primary treatment groups emerged:
+
+1. **NRT + Medication**: States covering at least one form of NRT and at least one cessation medication
+2. **NRT + Medication + Counseling**: States covering all three treatment categories (comprehensive coverage)
 
 The study examines how these different coverage combinations affect two key outcomes:
 - Smoking prevalence rates
 - Quit success rates
 
-The project includes comprehensive data cleaning, preparation, and visualization to identify trends and patterns in tobacco cessation outcomes based on state-level policy differences.
+The project includes comprehensive data cleaning, preparation, and visualization to identify trends and patterns in tobacco cessation outcomes based on state-level policy differences. By comparing these two distinct approaches to cessation support, the analysis provides insights into the value of including counseling services alongside pharmacotherapy in Medicaid tobacco cessation coverage.
 
 ## II. Input Data Sources and Files
 ### Data Sources

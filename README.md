@@ -13,15 +13,20 @@ The project includes comprehensive data cleaning, preparation, and visualization
 
 ## II. Input Data Sources
 The analysis uses several data sources:
-- **BRFSS Data (2011-2020)**: Behavioral Risk Factor Surveillance System survey data containing individual-level smoking behaviors and demographic information. Source: https://www.cdc.gov/brfss/annual_data/annual_data.htm
-- **Medicaid Expansion Data**: State-level information on Medicaid expansion status. Source: https://www.kff.org/status-of-state-medicaid-expansion-decisions/
+- **BRFSS Data (2011-2020)**: Behavioral Risk Factor Surveillance System survey data containing individual-level smoking behaviors and demographic information. 
+Source: https://www.cdc.gov/brfss/annual_data/annual_data.htm
+- **Medicaid Expansion Data**: State-level information on Medicaid expansion status. 
+Source: https://www.kff.org/status-of-state-medicaid-expansion-decisions/
 
-- **State Tobacco Activities Tracking and Evaluation (STATE) system Data**: Presents data on traditional Medicaid coverage of tobacco cessation treatments across all 50 states and D.C., serving as a national resource for assessing state-level cessation policies. Source: https://www.cdc.gov/statesystem/index.html
+- **State Tobacco Activities Tracking and Evaluation (STATE) system Data**: Presents data on traditional Medicaid coverage of tobacco cessation treatments across all 50 states and D.C., serving as a national resource for assessing state-level cessation policies. 
+Source: https://www.cdc.gov/statesystem/index.html
     - **Cessation Treatments Coverage Data**: Details on which tobacco cessation treatments are covered by Medicaid in each state
     - **Smokefree Indoor Air Data**: Information on smoking restrictions in bars, private worksites, and restaurants
     - **Cigarette Tax Data**: State-level cigarette tax rates per pack
-- **US Census FIPS Code Mapping**: For standardizing state identifiers. Source: https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt
-- **Federal Poverty Level (FPL) Information**: Annual poverty thresholds used to determine Medicaid eligibility. Source: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
+- **US Census FIPS Code Mapping**: For standardizing state identifiers. 
+Source: https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt
+- **Federal Poverty Level (FPL) Information**: Annual poverty thresholds used to determine Medicaid eligibility. 
+Source: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
 
 The analysis focuses on the Medicaid-eligible population (individuals at or below 100% of the Federal Poverty Level).
 
@@ -104,28 +109,28 @@ The bar chart summarizing average outcomes across the entire decade shows:
 ### Geographic Distribution Maps
 The choropleth maps reveal important spatial and temporal patterns:
 
-#### 2011 Smoking Prevalence Map:
+### 2011 Smoking Prevalence Map:
 ![alt text](Visualizations/map_1_smoking_2011.png)
 - Treatment approaches show distinct regional patterns, with NRT + Medication more common in the Northeast, Midwest, and West
 - Comprehensive coverage appears in scattered states across different regions
 - Some states with comprehensive coverage still show high smoking prevalence (red shading), particularly in the Midwest
 - Several southeastern states have no data or no coverage (white)
 
-#### 2020 Smoking Prevalence Map:
+### 2020 Smoking Prevalence Map:
 ![alt text](Visualizations/map_2_smoking_2020.png)
 - A dramatic shift in coverage patterns is evident, with many more states adopting comprehensive coverage
 - States with comprehensive coverage generally show lower smoking prevalence (lighter orange shading)
 - The West and Northeast regions show particularly strong improvements
 - Some southern states maintained high smoking prevalence despite policy changes
 
-#### Quit Success Rate Map (2011):
+### Quit Success Rate Map (2011):
 ![alt text](Visualizations/map_3_quit_success_2011.png)
 - In 2011, most states show relatively low quit success rates regardless of treatment approach
 - Wisconsin stands out with remarkably high quit success rates under the NRT + Medication approach (dark blue). Arkansas stands out as having higher quit success rates with comprehensive coverage (darker orange)
 - Several states with comprehensive coverage (NRT + Med + Counseling) show low quit success rates (light peach), particularly in the western region (Nevada)
 - The midwest shows a mix of high and low quit success rates, suggesting state-specific implementation factors. Many southern states have no data or no coverage (white areas)
 
-#### Quit Success Rate Map (2020):
+### Quit Success Rate Map (2020):
 ![alt text](Visualizations/map_4_quit_success_2020.png)
 - By 2020, the map shows a dramatic shift with many more states adopting comprehensive coverage
 - Texas shows notably high quit success rates with comprehensive coverage (darker orange)

@@ -43,7 +43,7 @@ Since the original dataset is quite large (over 10GB), I’ve provided the clean
 This script performs the initial data preparation process:
 - Inputs: BRFSS survey data (2011-2020), Medicaid expansion data, cessation coverage data
 - Merges BRFSS data across all years (2011-2020)
-- Joins with state-level policy data (Medicaid expansion, cessation coverage, smokefree air laws, cigarette taxes)
+- Joins with state-level policy data (Medicaid expansion, cessation coverage)
 - Standardizes adult household variables across survey years
 - Calculates Federal Poverty Level percentages for each respondent
 - Creates Medicaid eligibility indicators

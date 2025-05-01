@@ -2,11 +2,9 @@ import pandas as pd
 import numpy as np
 import os
 
-# Set file path to the data
-file_path = "C:\\Users\\James\\Desktop\\Github\\State-Tobacco-Analysis\\Final_2011_2020_Medicaidelig.csv"
 
 # Load the dataset
-df = pd.read_csv(file_path)
+df = pd.read_csv("Final_2011_2020_Medicaidelig.csv")
 
 # Rename Medicaidelig to medicaidelig to match STATA code
 df.rename(columns={'Medicaidelig': 'medicaidelig'}, inplace=True)
@@ -245,19 +243,6 @@ state_df = state_df.sort_values(['_state', 'year'])
 
 # Save the final dataset
 state_df.to_csv(os.path.join(output_dir, "state_level_descriptive_data.csv"), index=False)
-
-# Optionally, save summary statistics to a text file
-with open(os.path.join(output_dir, "summary_statistics.txt"), 'w') as f:
-    f.write("Treatment groups and composition:\n")
-    f.write(str(state_df['treatment_group'].value_counts()) + "\n\n")
-    
-    f.write("Cross-tabulation of treatment group by year:\n")
-    f.write(str(pd.crosstab(state_df['treatment_group'], state_df['year'])) + "\n\n")
-    
-    f.write("Outcome variables by treatment status:\n")
-    f.write(str(state_df.groupby('treatment_group')[
-        ['current_smoker_prev', 'past_year_quit_attempt_prev']
-    ].agg(['mean', 'std', 'min', 'max', 'count'])) + "\n\n")
 
 # Display some summary statistics
 print("\nTreatment groups and composition:")

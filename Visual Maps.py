@@ -23,7 +23,7 @@ COLORS = {
 }
 
 # Function to load and prepare data
-def load_data(file_path="C:/Users/James/Desktop/Github/State-Tobacco-Analysis/state_level_descriptive_data.csv"):
+def load_data(file_path="state_level_descriptive_data.csv"):
     """Load the state-level tobacco data."""
     # Check if file exists
     if not os.path.exists(file_path):
@@ -181,7 +181,7 @@ def create_filled_color_map(df, shapefile_path, year, column, column_label, titl
 def main():
     """Main function to execute the map visualizations."""
     # Set output directory
-    output_dir = "C:/Users/James/Desktop/Github/State-Tobacco-Analysis/Visualizations"
+    output_dir = "Visualizations"
     
     # Create output directory if it doesn't exist
     if not os.path.exists(output_dir):
@@ -189,7 +189,7 @@ def main():
         print(f"Created output directory: {output_dir}")
     
     # Set path to your downloaded shapefile
-    shapefile_dir = os.path.join(output_dir, "shapefiles")
+    shapefile_dir = "shapefiles"
     shapefile_path = os.path.join(shapefile_dir, "cb_2018_us_state_500k.shp")
     
     # Verify that the shapefile exists

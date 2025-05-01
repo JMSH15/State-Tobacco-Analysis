@@ -5,7 +5,7 @@ import os
 
 def main():
     # Load the individual‐level category indicators
-    csv_path = r'C:\Users\James\Desktop\Github\State-Tobacco-Analysis\individual_level_with_category_indicators.csv'
+    csv_path = 'individual_level_with_category_indicators.csv'
     df = pd.read_csv(csv_path)
 
     # Collapse to state‑year: did the state ever cover each category?
@@ -68,7 +68,7 @@ def main():
     }
 
     # Plot and save
-    output_dir = r'C:\Users\James\Desktop\Github\State-Tobacco-Analysis\Visualizations'
+    output_dir = 'Visualizations'
     os.makedirs(output_dir, exist_ok=True)
 
     fig, ax = plt.subplots(figsize=(12, 6))

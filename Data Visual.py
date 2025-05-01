@@ -28,7 +28,7 @@ COLORS = {
 }
 
 # Function to load and prepare data
-def load_data(file_path="C:/Users/James/Desktop/Github/State-Tobacco-Analysis/state_level_descriptive_data.csv"):
+def load_data(file_path="state_level_descriptive_data.csv"):
     """Load the state-level tobacco data."""
     # Check if file exists
     if not os.path.exists(file_path):
@@ -223,7 +223,7 @@ def plot_average_outcomes(df, output_dir):
 def main():
     """Main function to execute all visualizations."""
     # Set output directory
-    output_dir = "C:/Users/James/Desktop/Github/State-Tobacco-Analysis/Visualizations"
+    output_dir = "Visualizations"
     
     # Create output directory if it doesn't exist
     if not os.path.exists(output_dir):

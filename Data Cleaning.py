@@ -3,7 +3,10 @@ import numpy as np
 import os
 
 # Set working directory 
-work_dir = "C:/Users/james/Desktop/Second Year Paper/BRFSS Data"
+# This file is for reference only. 
+# To replicate the analysis, please download the data from the original sources and update the file paths accordingly.
+
+work_dir = "BRFSS Data"
 os.chdir(work_dir)
 
 def merge_brfss_data():
